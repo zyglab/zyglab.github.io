@@ -203,7 +203,6 @@ button {
     background-color: #93278F;
     background-image: none;
     transition: all 0s;
-    margin-bottom: 0;
 }
 
 .work-item {
@@ -211,7 +210,7 @@ button {
     position: relative;
     box-sizing: border-box;
     background-color: #F4E9F4;
-    margin: 2rem 0 2rem -15rem;
+    margin: 1.5rem 0 2rem -15rem;
     padding: 2rem 2rem 0 2rem;
 }
 
@@ -308,6 +307,11 @@ button {
 
     .know-more-container {
         display: block;
+    }
+
+    .work-toggle {
+        background-image: none;
+        background-color: #73C434;
     }
 
     .work-item {

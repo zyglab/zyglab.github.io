@@ -40,10 +40,10 @@ $.fn.serializeObject = function()
             imgs = item.find('img[data-src]');
 
         if (item.css('display') === 'none') {
-            $('.work-item').slideUp('fast');
+            $('.work-item').hide();
             $('.work-toggle').removeClass('active');
 
-            item.slideDown('fast');
+            item.show();
             toggle.addClass('active');
 
             imgs.each(function () {
@@ -68,15 +68,15 @@ $.fn.serializeObject = function()
 
                 $('html, body').animate({
                     scrollTop: px
-                }, 200);
-            }, 215);
+                }, 100);
+            }, 100);
 
             if (push) {
                 var state = {'id': id};
                 window.history.pushState(state, '', window.location.pathname + '#!/' + id);
             }
         } else {
-            item.slideUp('fast');
+            item.hide();
             toggle.removeClass('active');
 
             if (push) {
@@ -97,7 +97,7 @@ $.fn.serializeObject = function()
 
     window.onpopstate = function(event) {
         if (event.state === null || event.state.id === null) {
-            $('.work-item').slideUp('fast');
+            $('.work-item').hide();
             $('.work-toggle').removeClass('active');
         } else {
             openCloseModal(event.state.id, false);
@@ -125,7 +125,7 @@ $.fn.serializeObject = function()
     });
 
     $('.know-more-link').click(function (e) {
-        $('.know-more').slideToggle('fast');
+        $('.know-more').toggle();
 
         e.preventDefault();
         return false;
