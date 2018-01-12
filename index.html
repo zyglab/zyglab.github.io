@@ -372,22 +372,26 @@
                     <div>
                         <label>
                             <span>E-mail</span>
-                            <input type="email" name="_replyto" required>
+                            <input type="email" name="email" required>
                         </label>
                     </div>
 
                     <div>
                         <label>
                             <span>Message</span>
-                            <textarea rows="3" name="msg" required></textarea>
+                            <textarea rows="3" name="message" required></textarea>
                         </label>
                     </div>
 
                     <input type="hidden" name="_subject" value="[Zyglab] Contact!">
                     <input type="hidden" name="_format" value="plain">
 
-                    <div class="form-submit"><button type="submit">send</button></div>
+                    <div class="form-submit"><button type="submit"><span class="form-send">send</span> <span class="form-sending"><i class="fas fa-spinner fa-spin"></i> sending...</span></button></div>
                 </form>
+
+                <div class="form-success">
+                    <i class="fas fa-check"></i> Your message has been sent!
+                </div>
 
                 <div>
                     <p>You can also use the alternatives below:</p>

@@ -57,17 +57,23 @@ $.fn.serializeObject = function()
             });
 
             setTimeout(function () {
-                var px = $elm.offset().top - 210 + 59;
+                var dist = 210 - 59,
+                    px = $elm.offset().top;
+
+                if ($(window).width() < 700) {
+                    dist = 28;
+                }
+
+                px = px - dist;
 
                 $('html, body').animate({
                     scrollTop: px
                 }, 200);
-            }, 210);
+            }, 215);
 
             if (push) {
                 var state = {'id': id};
                 window.history.pushState(state, '', window.location.pathname + '#!/' + id);
-                console.log('Pushing!');
             }
         } else {
             item.slideUp('fast');
@@ -76,7 +82,6 @@ $.fn.serializeObject = function()
             if (push) {
                 var state = {'id': null};
                 window.history.pushState(state, '', window.location.pathname);
-                console.log('Pushing!');
             }
         }
     };
@@ -126,13 +131,24 @@ $.fn.serializeObject = function()
         return false;
     });
 
+    $('.contact-form button').click(function (e) {
+        var $this = $(this);
+
+        $this.find('.form-send').hide();
+        $this.find('.form-sending').show();
+        $this.attr('disabled', 'disabled');
+
+        $('.contact-form').submit();
+    });
+
     $('.contact-form').submit(function (e) {
         var $this = $(this),
             target = $this.attr('action'),
             data = $this.serializeObject();
 
         $.post(target, data, function (d) {
-            console.log(d);
+            $this.hide();
+            $('.form-success').show();
         }, 'json');
 
         e.preventDefault();

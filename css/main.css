@@ -42,12 +42,12 @@ header {
 }
 
 main {
-    margin: 70px 0 0 210px;
-    max-width: 490px;
+    margin: 5rem 0 0 15rem;
+    max-width: 35rem;
 }
 
 article {
-    margin-bottom: 70px;
+    margin-bottom: 5rem;
 }
 
 #about {
@@ -83,7 +83,7 @@ article {
 .social-links {
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 0 0 2rem 0;
 }
 
 .social-links a {
@@ -145,6 +145,19 @@ button {
     background-color: #625D62;
     padding: .5rem 1rem;
     color: white;
+    cursor: pointer;
+}
+
+.form-sending {
+    display: none;
+    color: #999;
+}
+
+.form-success {
+    font-size: 1.5rem;
+    color: #73C434;
+    margin-bottom: 2rem;
+    display: none;
 }
 
 .contact-extra {
@@ -198,7 +211,7 @@ button {
     position: relative;
     box-sizing: border-box;
     background-color: #F4E9F4;
-    margin: 2rem 0 2rem -210px;
+    margin: 2rem 0 2rem -15rem;
     padding: 2rem 2rem 0 2rem;
 }
 
@@ -252,15 +265,15 @@ button {
 
 .work-item-controls li {
     display: inline-block;
-    margin-left: 3px;
+    margin-left: .2rem;
 }
 
 .work-item-controls a {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 28px;
-    height: 28px;
+    width: 2rem;
+    height: 2rem;
     text-decoration: none;
     background-color: gray;
     text-align: center;
@@ -277,4 +290,32 @@ button {
 
 .no-mb {
     margin-bottom: 0 !important;
+}
+
+@media only screen and (max-width: 700px) {
+    header {
+        position: relative;
+        margin: 2rem;
+    }
+
+    main {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0 2rem 2rem 2rem;
+        width: 100%;
+        max-width: none;
+    }
+
+    .know-more-container {
+        display: block;
+    }
+
+    .work-item {
+        margin: 2rem -2rem;
+    }
+
+    .work-item img {
+        width: calc(100% + 4rem);
+        margin-left: -2rem;
+    }
 }
