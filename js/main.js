@@ -72,8 +72,14 @@ $.fn.serializeObject = function()
             }, 100);
 
             if (push) {
-                var state = {'id': id};
-                window.history.pushState(state, '', window.location.pathname + '#!/' + id);
+                var state = {'id': id},
+                    page = window.location.pathname + '#!/' + id;
+
+                window.history.pushState(state, '', page);
+
+                gtag('config', 'UA-112416602-1', {
+                    'page_path': page
+                });
             }
         } else {
             item.hide();
