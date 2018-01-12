@@ -131,25 +131,28 @@ $.fn.serializeObject = function()
         return false;
     });
 
-    $('.contact-form button').click(function (e) {
-        var $this = $(this);
-
-        $this.find('.form-send').hide();
-        $this.find('.form-sending').show();
-        $this.attr('disabled', 'disabled');
-
-        $('.contact-form').submit();
-    });
-
     $('.contact-form').submit(function (e) {
         var $this = $(this),
             target = $this.attr('action'),
             data = $this.serializeObject();
 
-        $.post(target, data, function (d) {
-            $this.hide();
-            $('.form-success').show();
-        }, 'json');
+        $.ajax({
+            type: "POST",
+            url: target,
+            data: data,
+            beforeSend: function () {
+                var btn = $this.find('button');
+
+                btn.find('.form-send').hide();
+                btn.find('.form-sending').show();
+                btn.attr('disabled', 'disabled');
+            },
+            success: function (d) {
+                $this.hide();
+                $('.form-success').show();
+            },
+            dataType: 'json'
+        });
 
         e.preventDefault();
         return false;
