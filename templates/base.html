@@ -1,8 +1,12 @@
 <!doctype html>
-<html lang="pt">
+<html lang="{{ lang }}">
   <head>
     <meta charset="utf-8">
-    <title>Zyglab</title>
+    <title>
+      {%- if page.title is defined -%} {{ page.title }} {%- endif -%} 
+      {%- if section.title is defined -%} {{ section.title }} {%- endif -%} 
+    </title>
+    <meta name="description" content="{%- if page.description is defined -%} {{ page.description }} {%- endif -%} {%- if section.description is defined -%} {{ section.description }} {%- endif -%}">
     <link rel="stylesheet" href="/main.css">
   </head>
 
