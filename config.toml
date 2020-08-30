@@ -1,0 +1,29 @@
+# Reference: https://www.getzola.org/documentation/getting-started/configuration/
+base_url = "https://www.zyglab.dev"
+
+title = "Zyglab"
+
+compile_sass = true
+
+highlight_code = true
+
+build_search_index = false
+
+generate_feed = true
+
+languages = [
+    {code = "en", feed = true}
+]
+
+default_language = "pt"
+
+[translations]
+[translations.pt]
+
+description = "Zyglab - Tecnologia, suficiência, cooperação!"
+
+[translations.en]
+
+description = "Zyglab - Technology, sufficiency, cooperation!"
+
+[extra]

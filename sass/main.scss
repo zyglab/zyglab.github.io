@@ -1,0 +1,40 @@
+@import 'reset';
+
+html, body {
+  color: #141414;
+  font-family: sans-serif;
+}
+
+p, pre {
+  margin-bottom: 2rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Georgia, serif;
+  margin-bottom: 2rem;
+}
+
+.container {
+  max-width: 640px;
+  padding: 2rem;
+}
+
+.logo {
+  margin-bottom: 2rem;
+
+  a {
+    display: block;
+    height: 5rem;
+    width: 5rem;
+
+    img {
+      display: block;
+    }
+  }
+}
+
+.motto {
+  font-size: 5rem;
+  font-weight: bold;
+  line-height: 1.25;
+}
