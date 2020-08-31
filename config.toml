@@ -9,6 +9,8 @@ compile_sass = true
 
 highlight_code = true
 
+highlight_theme = "dracula"
+
 build_search_index = false
 
 generate_feed = true

@@ -37,7 +37,6 @@ class User extends DataLayer
 $user = new User('John Doe', 'john.doe@example.com');
 
 $user->save();
-
 ```
 
 The somewhat equivalent of that code in Elixir looks like this:

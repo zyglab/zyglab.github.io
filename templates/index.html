@@ -1,5 +1,28 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1 class="motto">Technology, sufficiency and cooperation.</h1>
+  <h1 class="motto">Technology, sufficiency, cooperation.</h1>
+
+  <hr>
+
+  <p>
+    <strong>Zyglab</strong> is the brainchild of <a href="http://www.eberfdias.com">Éber F. Dias</a>, a full-stack web
+    developer and designer based in the São Paulo area, Brazil.
+  </p>
+
+  <hr>
+
+  <h2>Latest blog posts</h2>
+
+  {% set section = get_section(path="blog/_index.md") %}
+
+  <ul class="posts-list">
+    {% for post in section.pages | slice(end=4) %}
+      <li>
+        <a href="{{ post.permalink }}">{{ post.title }}</a> -
+        {{ post.date | date(format="%Y-%m-%d") }}
+      </li>
+    {% endfor %}
+    <li><a href="{{ get_url(path="@/blog/_index.md") }}">More posts...</a></li>
+  </ul>
 {% endblock content %}
