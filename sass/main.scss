@@ -60,6 +60,12 @@ h6 { font-size: 1rem; }
   line-height: 1.25;
 }
 
+.post {
+  footer {
+    margin-bottom: 2rem;
+  }
+}
+
 .content {
   line-height: 1.5;
 
@@ -90,4 +96,8 @@ h6 { font-size: 1rem; }
   li {
     margin-bottom: 1rem;
   }
+}
+
+.footer {
+  font-size: 0.75rem;
 }
