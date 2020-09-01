@@ -20,6 +20,6 @@
         {{ post.date | date(format=trans(key="date_format", lang=lang)) }}
       </li>
     {% endfor %}
-    <li><a href="{{ get_url(path="@/blog/_index.md", lang="en") }}">{{ trans(key="more_posts", lang=lang) }}</a></li>
+    <li><a href="{{ get_url(path="@/blog/_index.md", lang=lang) }}">{{ trans(key="more_posts", lang=lang) }}</a></li>
   </ul>
 {% endblock content %}

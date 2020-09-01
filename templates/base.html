@@ -31,12 +31,6 @@
 
       <hr>
 
-      {% if lang == "en" %}
-        {% set other_lang = "pt" %}
-      {% else %}
-        {% set other_lang = "en" %}
-      {% endif %}
-
       <footer class="footer">
         {{ trans(key="built_with", lang=lang) }} <a href="http://getzola.org">Zola</a> |
         {{ trans(key="code_on", lang=lang) }} <a href="http://github.com/zyglab">Github</a> |

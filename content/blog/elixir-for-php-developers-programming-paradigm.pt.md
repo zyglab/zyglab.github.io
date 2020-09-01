@@ -2,6 +2,8 @@
 title = "Elixir para desenvolvedores PHP - Paradigma de programação"
 description = "Elixir para desenvolvedores PHP - Paradigma de programação - Parte I"
 date = 2019-10-01
+[extra]
+author = "Éber F. Dias"
 +++
 When I want to learn something new I try to find some kind of material comparing it to something that I already know so I can see the pros and cons and decide if I should invest my time on it.
 

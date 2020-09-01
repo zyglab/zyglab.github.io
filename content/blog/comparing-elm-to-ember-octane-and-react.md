@@ -2,6 +2,8 @@
 title = "Comparing Elm to Ember Octane and React"
 description = "Comparing Elm to Ember Octane and React"
 date = 2020-05-12
+[extra]
+author = "Éber F. Dias"
 +++
 Today I stumbled on this article "[Comparing Ember Octane and React](https://www.pzuraq.com/comparing-ember-octane-and-react/)" on Hacker News.
 

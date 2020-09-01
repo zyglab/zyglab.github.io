@@ -36,6 +36,9 @@ more_posts = "More posts..."
 date_format = "%Y-%m-%d"
 blog_section = "blog/_index.md"
 read_other = "Read other posts"
+posted_on = "Posted on"
+other_lang = "pt"
+read_other_lang = "Leia em português"
 
 [translations.pt]
 
@@ -50,3 +53,6 @@ more_posts = "Mais postagens..."
 date_format = "%d/%m/%Y"
 blog_section = "blog/_index.pt.md"
 read_other = "Leia outras postagens"
+posted_on = "Postado em"
+other_lang = "en"
+read_other_lang = "Read in english"
