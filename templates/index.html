@@ -1,28 +1,25 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1 class="motto">Technology, sufficiency, cooperation.</h1>
+  <h1 class="motto">{{ trans(key="motto", lang=lang) }}</h1>
 
   <hr>
 
-  <p>
-    <strong>Zyglab</strong> is the brainchild of <a href="http://www.eberfdias.com">Éber F. Dias</a>, a full-stack web
-    developer and designer based in the São Paulo area, Brazil.
-  </p>
+  <p>{{ section.extra.eye | safe }}</p>
 
   <hr>
 
-  <h2>Latest blog posts</h2>
+  <h2>{{ trans(key="latest_blog", lang=lang) }}</h2>
 
-  {% set section = get_section(path="blog/_index.md") %}
+  {% set blog = get_section(path=trans(key="blog_section", lang=lang)) %}
 
   <ul class="posts-list">
-    {% for post in section.pages | slice(end=4) %}
+    {% for post in blog.pages | slice(end=4) %}
       <li>
         <a href="{{ post.permalink }}">{{ post.title }}</a> -
-        {{ post.date | date(format="%Y-%m-%d") }}
+        {{ post.date | date(format=trans(key="date_format", lang=lang)) }}
       </li>
     {% endfor %}
-    <li><a href="{{ get_url(path="@/blog/_index.md") }}">More posts...</a></li>
+    <li><a href="{{ get_url(path="@/blog/_index.md", lang="en") }}">{{ trans(key="more_posts", lang=lang) }}</a></li>
   </ul>
 {% endblock content %}

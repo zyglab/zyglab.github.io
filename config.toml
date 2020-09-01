@@ -16,3 +16,37 @@ build_search_index = false
 generate_feed = true
 
 default_language = "en"
+
+languages = [
+  {code = "pt", feed = true}
+]
+
+[translations]
+
+[translations.en]
+
+home_path = "/"
+built_with = "Built with"
+code_on = "Code on"
+follow_us = "Follow us on"
+support_us = "Support us on"
+motto = "Technology, sufficiency, cooperation."
+latest_blog = "Latest blog posts"
+more_posts = "More posts..."
+date_format = "%Y-%m-%d"
+blog_section = "blog/_index.md"
+read_other = "Read other posts"
+
+[translations.pt]
+
+home_path = "/pt"
+built_with = "Feito com"
+code_on = "Código no"
+follow_us = "Siga-nos no"
+support_us = "Colabore no"
+motto = "Tecnologia, suficiência, cooperação"
+latest_blog = "Últimas postagens no blog"
+more_posts = "Mais postagens..."
+date_format = "%d/%m/%Y"
+blog_section = "blog/_index.pt.md"
+read_other = "Leia outras postagens"

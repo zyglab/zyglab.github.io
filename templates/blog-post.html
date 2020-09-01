@@ -11,8 +11,8 @@
     <hr>
 
     <footer>
-      <a href="{{ get_url(path="@/blog/_index.md") }}">Read other posts</a> |
-      <a href="/">Home</a>
+      <a href="{{ get_url(path="@/blog/_index.md") }}">{{ trans(key="read_other", lang=lang) }}</a> |
+      <a href="{{ trans(key="home_path", lang=lang) }}">Home</a>
     </footer>
   </article>
 {% endblock content %}

@@ -12,9 +12,9 @@
       {% endif %}
     </title>
     {% if page.description is defined %}
-      <meta name="description" content="{{ page.description}}">
+      <meta name="description" content="{{ page.description }}">
     {% elif section.description is defined %}
-      <meta name="description" content="{{ section.description}}">
+      <meta name="description" content="{{ section.description }}">
     {% endif %}
     <link rel="stylesheet" href="/main.css">
   </head>
@@ -22,7 +22,7 @@
   <body>
     <div class="container">
       <div class="logo">
-        <a href="/">
+        <a href="{{ trans(key="home_path", lang=lang) }}">
           <img src="/imgs/logo.svg" alt="Zyglab">
         </a>
       </div>
@@ -31,10 +31,17 @@
 
       <hr>
 
+      {% if lang == "en" %}
+        {% set other_lang = "pt" %}
+      {% else %}
+        {% set other_lang = "en" %}
+      {% endif %}
+
       <footer class="footer">
-        Built with <a href="http://getzola.org">Zola</a> |
-        Follow us on <a href="http://www.twitter.com/zyglab">Twitter</a> |
-        Support us on <a href="http://www.patreon.com/zyglab">Patreon</a>
+        {{ trans(key="built_with", lang=lang) }} <a href="http://getzola.org">Zola</a> |
+        {{ trans(key="code_on", lang=lang) }} <a href="http://github.com/zyglab">Github</a> |
+        {{ trans(key="follow_us", lang=lang) }} <a href="http://www.twitter.com/zyglab">Twitter</a> |
+        {{ trans(key="support_us", lang=lang) }} <a href="http://www.patreon.com/zyglab">Patreon</a>
       </footer>
     </div>
   </body>
