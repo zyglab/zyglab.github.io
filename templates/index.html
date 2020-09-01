@@ -11,7 +11,7 @@
 
   <h2>{{ trans(key="latest_blog", lang=lang) }}</h2>
 
-  {% set blog = get_section(path=trans(key="blog_section", lang=lang)) %}
+  {% set blog = get_section(path=section.extra.blog_section) %}
 
   <ul class="posts-list">
     {% for post in blog.pages | slice(end=4) %}
