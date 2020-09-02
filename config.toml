@@ -21,6 +21,11 @@ languages = [
   {code = "pt", feed = true}
 ]
 
+taxonomies = [
+  {name = "tags", lang = "en"},
+  {name = "tags", lang = "pt"}
+]
+
 [translations]
 
 [translations.en]
@@ -38,6 +43,7 @@ read_other = "Read other posts"
 posted_on = "Posted on"
 other_lang = "pt"
 read_other_lang = "Leia em português"
+posts_for_tag = "Posts for tag"
 
 [translations.pt]
 
@@ -54,3 +60,4 @@ read_other = "Leia outras postagens"
 posted_on = "Postado em"
 other_lang = "en"
 read_other_lang = "Read in english"
+posts_for_tag = "Postagens para a tag"

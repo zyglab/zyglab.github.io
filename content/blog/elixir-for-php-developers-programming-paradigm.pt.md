@@ -2,24 +2,27 @@
 title = "Elixir para desenvolvedores PHP - Paradigma de programação"
 description = "Elixir para desenvolvedores PHP - Paradigma de programação - Parte I"
 date = 2019-10-01
+[taxonomies]
+tags = ["elixir", "php", "iniciantes", "funcional"]
 [extra]
 author = "Éber F. Dias"
+base_path = "@/blog/elixir-for-php-developers-programming-paradigm.md"
 +++
-When I want to learn something new I try to find some kind of material comparing it to something that I already know so I can see the pros and cons and decide if I should invest my time on it.
+Quando quero aprender algo novo tento achar algum material comparando o que quero aprender com algo que eu já conheça. Assim posso medir os pros e contras e decidir se devo investir meu tempo nisso.
 
-I come from the PHP world and fell in love with Elixir so my idea here is to compare some aspects of those languages and show how they are different (or similar) and maybe help you make a decision to learn more about it. I hope you will find that Elixir is a super fun language to work with!
+Eu venho do mundo do PHP e me apaixonei por Elixir então minha ideia aqui é comparar alguns aspectos destas linguagens e mostrar como elas são diferentes (ou similares) e talvez te ajudar a tomar a decisão de aprender mais sobre ela. Espero te mostrar que Elixir é uma linguagem divertida de se trabalhar!
 
-By the way, I'm a beginner in the Elixir world. This is the perspective from someone learning it as we go so take that into account.
+Aliás, sou iniciante no mundo Elixir. Esta é a perspectiva de alguém escrevendo enquanto aprende a linguagem então leve isto em consideração.
 
-## Elixir is a functional programming language
+## Elixir é uma linguagem funcional
 
-The first big difference between PHP and Elixir is that Elixir is a pure FP (functional programming) language. PHP, on the other hand, is a multi-paradigm language, where you can solve problems using different paradigms even though OOP (object-oriented programming) is pretty dominant these days.
+A primeira grande diferença entre PHP e Elixir é que Elixir é uma linguagem funcional pura. PHP, no entanto, é uma linguagem multi-paradigma, onde você pode resolver problemas usando diferentes paradigmas embora POO (programação orientada a objetos) seja bem dominante hoje em dia.
 
-And what does FP means? The theory can get really dense, and you might wanna check the [Wikipedia](https://en.wikipedia.org/wiki/Functional_programming) article for a more elaborated description, but in a nutshell and for the purposes of this comparison, it means there are **no objects**.
+E o que FP (functional programming ou programação funcional) significa? A teoria pode ficar bem pesada e talvez você queira ler o artigo na [Wikipedia](https://en.wikipedia.org/wiki/Functional_programming) para uma descrição mais elaborada, mas em resumo e para os propósitos desta comparação, significa que **não existem objetos**.
 
-An object in OOP is (among other things) when you bundle data and functionality together: on the same object, you have the state and the methods to affect that state.
+Um objeto em POO é (além de outras coisas) quando você junta dados e funcionalidades: no mesmo objeto você tem o estado e os métodos para afetar este estado.
 
-But in functional programming, those are separated things and all you get are functions that manipulate data. Let's take a look at how that looks like:
+Mas em FP estas coisas são separadas e tudo o que você tem são funções que manipulam dados. Vamos dar uma olhada em como isso se parece:
 
 ```php
 <?php
@@ -41,7 +44,7 @@ $user = new User('John Doe', 'john.doe@example.com');
 $user->save();
 ```
 
-The somewhat equivalent of that code in Elixir looks like this:
+O equivalente em Elixir do código anterior seria algo mais ou menos assim:
 
 ```elixir
 defmodule User do
@@ -56,17 +59,17 @@ end
 |> User.save()
 ```
 
-There is a lot going on here. The syntax is kinda alien compared to the PHP counterpart. No brackets, and what is that assignment on the function definition? Well, we will get there but just to clarify, that is **not** an assignment.
+Existe muita coisa acontecendo aqui. A sintaxe é um pouco alien se comparada à do PHP. Sem colchetes, e o que é aquela atribuição na definição da função? Bem, chegaremos lá mas só pra esclarecer, aquilo **não é** uma atribuição.
 
-What we did here was to create a `struct` which is a glorified `map`. A `map` is similar to an associative array in PHP where you have keys and values. The difference between a `map` and a `struct` is that with the `struct` you can **struct**ure how the data will look like, defining keys and even default values (you might be thinking "uhm, that looks like an object" but **it is not**, it is just data).
+O que fizemos aqui foi criar uma `struct` que é um `map` glorificado. Um `map` é similar a um array associativo em PHP onde você tem chaves e valores. A diferença entre um `map` e uma `struct` é que com a `struct` você pode estruturar como seus dados devem se parecer, definindo chaves específicas e até mesmo valores padrão (você pode estar pensando agora "uhm, isso parece um objeto" mas **não é**, são apenas dados).
 
-Another thing you might have noticed is that we don't have any kind of inheritance. In the PHP code, it is assumed that the `save` method comes from the `DataLayer` class from which the `User` class extends but in the Elixir code the `save` function is just calling another function from another module (`Repo` being the module) to persist the data to the database.
+Outra coisa que você deve ter percebido é que não temos nenhum tipo de herança. No código PHP fica pressuposto que o método `save` vem da classe `DataLayer` da qual a nossa classe `User` extende mas no código Elixir a função `save` está apenas chamando uma outra função de um outro módulo (`Repo` neste caso) para persistir os dados no nosso banco.
 
-In FP you have data and functions all the way down and your work is to **compose** those things to make bigger things that can also be composed onto other things.
+Em FP você tem dados e funções por todos os lados e seu trabalho é **compor** estas coisas para criar outras coisas maiores que também podem compor outras coisas.
 
-## But PHP also has functions...
+## Mas PHP também tem funções...
 
-The Elixir code could be roughly translated to PHP like:
+O código Elixir também poderia ser traduzido para PHP mais ou menos assim:
 
 ```php
 <?php
@@ -80,33 +83,33 @@ $user = ['name' => 'John Doe', 'email' => 'john.doe@example.com'];
 save($user);
 ```
 
-So PHP can do FP right? Well, right... I guess? Like I said at the beginning, Elixir is a **pure** FP language. That means that there are no "escape hatches" from the FP world when using Elixir.
+Então PHP pode ser funcional certo? Bom, certo... Eu acho? Como disse no início, Elixir é uma linguagem funcional **pura**. Isso siginifica que não existem "atalhos" pra fora deste mundo quando usamos Elixir.
 
-In PHP you can certainly try to use a "functional style" of code but it will never be real FP. You might get "lazy" and just take advantage of the multi-paradigm nature of the language to solve some problems in other ways and in fact, that would be easier in PHP because it is not an FP language.
+Em PHP você pode desenvolver usando um "estilo funcional" mas nunca será funcional de verdade. Você pode ficar "preguiçoso" e apenas tirar vantagem da natureza multi-paradigma da linguagem para resolver alguns problemas e, na realidade, seria melhor assim pois PHP não é uma linguagem funcional.
 
-Also, FP is not only defined by the lack of objects. If you were curious enough to take a look at that Wikipedia article you might have seen that the FP paradigm includes other things like:
+E FP não se caracteriza apenas pela ausência de objetos. Se você teve a curiosidade de ler aquele artigo da Wikipedia viu que este paradigma inclui outras coisas como:
 
-- First-class functions
-- Total functions
-- Pure functions
-- Data immutability
-- Recursion
-- Heavy use of ~~drugs~~ mathematical theory
+- Funções de primeira classe
+- Funções totais
+- Funções puras
+- Imutabilidade
+- Recursão
+- Uso pesado de ~~drogas~~ teorias matemáticas
 
-Among many other things...
+E muitas outras coisas...
 
-Some of that you might even have in PHP. First-class functions entered the language with closures on version 5.3. Other things you definitely won't have like **data immutability** which is a huge aspect of FP.
+Algumas destas coisas podem até aparecer em PHP. Funções de primeira classe entraram na linguagem com closures na versão 5.3. Outras você definitivamente não terá como **imutabilidade** que é um aspecto gigantesco de FP.
 
-## And how is it any better?
+## E como isto é melhor?
 
-Now you have a rough idea of what FP is and how it is different from OOP but is it any better than OOP? Yes and no. Some people might claim that each paradigm has its place in the programming world trying to solve different problems but at the end of the day, FP is just a different way to look at programming.
+Agora você já tem alguma ideia do que é FP e como ela se difere de POO mas ela é melhor? Sim e não. Algumas pessoas vão dizer que cada paradigma tem seu lugar no mundo e estão tentando resolver problemas diferentes, mas no final das contas, FP oferece uma forma diferente de se olhar para programação.
 
-Instead of thinking about objects and their attributes and methods, you only think about data and how to transform that data with functions. It is a simpler outlook but a very powerful one.
+Ao invés de pensar em objetos, seus atributos e métodos, você pensa apenas em dados e em como transformá-los com funções. É uma perspectiva mais simples mas muito poderosa.
 
-Without strong patterns and consistency OO programs can quickly become unmaintainable. With FP you can avoid a lot of those pitfalls writing simpler code that is easier to write and refactor. Don't get me wrong, you can still screw up writing FP but some common problems in the way you architect programs with OOP are non-existent in FP.
+Sem fortes padrões e consistência, programas OO podem rapidamente se tornar insustentáveis. Com FP você pode evitar muitas destas armadilhas escrevendo um código mais simples, que é mais fácil de escrever e refatorar. Não me entanda mal, você ainda pode estragar tudo usando FP mas alguns dos problemas mais comuns na arquitetura de programas com OO simplesmente não existem em FP.
 
-There are a lot of articles out there that will show you how FP can be a strong paradigm and I suggest you take a look. I know there are a lot of loose ends in this article but I'm just trying to make an interesting introduction. The idea is to dive deeper on some of these concepts in future articles.
+Existem inúmeros artigos por aí que vão te mostrar como FP pode ser um paradigma forte e eu sugiro que você dê uma olhada. Sei que existem muitas pontas soltas neste artigo mas eu estou apenas tentando fazer uma intrudução interessante. A ideia é mergulhar mais fundo em alguns destes conceitos em artigos futuros.
 
-Let me know if you are interested in a specific subject and how that compares to PHP. I might talk about it in my next article.
+Me avise se você estiver interessado em algum assunto específico. Eu posso falar sobre ele num próximo artigo.
 
-Thanks for reading!
+Obrigado pela leitura!

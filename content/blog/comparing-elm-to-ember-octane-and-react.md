@@ -2,8 +2,11 @@
 title = "Comparing Elm to Ember Octane and React"
 description = "Comparing Elm to Ember Octane and React"
 date = 2020-05-12
+[taxonomies]
+tags = ["elm", "ember", "react", "functional"]
 [extra]
 author = "Éber F. Dias"
+base_path = "@/blog/comparing-elm-to-ember-octane-and-react.md"
 +++
 Today I stumbled on this article "[Comparing Ember Octane and React](https://www.pzuraq.com/comparing-ember-octane-and-react/)" on Hacker News.
 

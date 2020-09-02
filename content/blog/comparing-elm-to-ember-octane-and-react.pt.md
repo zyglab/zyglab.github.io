@@ -2,23 +2,26 @@
 title = "Comparando Elm a Ember Octane e React"
 description = "Comparando Elm a Ember Octane e React"
 date = 2020-05-12
+[taxonomies]
+tags = ["elm", "ember", "react", "funcional"]
 [extra]
 author = "Éber F. Dias"
+base_path = "@/blog/comparing-elm-to-ember-octane-and-react.md"
 +++
-Today I stumbled on this article "[Comparing Ember Octane and React](https://www.pzuraq.com/comparing-ember-octane-and-react/)" on Hacker News.
+Hoje me deparei com o artigo "[Comparing Ember Octane and React](https://www.pzuraq.com/comparing-ember-octane-and-react/)" no Hacker News.
 
-The article goes to demonstrate how the same application can be built both with React and Ember, going into implementation details and drawing some conclusions from it. The app is a simple Hacker News search that you can test yourself here:
+Ele tenta demonstrar como uma mesma aplicação pode ser construída tanto com React quanto Ember, detalhando suas implementações e chegando a algumas conclusões a partir disto. A aplicação é um simples sistema de busca do Hacker News que você pode testar aqui:
 
 - [React](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/Async-Await-in-React)
 - [Ember](https://glitch.com/~comparing-ember-octane-and-react)
 
-At the end of the article, the author ([Chris Garrett](https://www.pzuraq.com/author/pzuraq/), which is an Ember Core team member) writes:
+Ao final do artigo, o autor ([Chris Garrett](https://www.pzuraq.com/author/pzuraq/), que é um membro do core team do Ember) escreve:
 
-> In writing this post, I feel like I got to experience React with hooks much more deeply than the research I've done before, and I enjoyed learning them and working with them. It is an interesting programming model, and while I'm not entirely sold yet (I think I'd still prefer something more akin to **Elm** personally) I can definitely see why people like them, and what the advantanges are.
+> Escrevendo este post, eu sinto que pude experimentar React com hooks de forma muito mais profunda que nas minhas pesquisas anteriores, e eu gostei muito do que aprendi. É um modelo de programação interessante, e enquanto não esteja totalmente convencido ainda (pessoalmente eu acho que prefiro algo mais parecido com **Elm**), posso ver claramente porque as pessoas gostam dele e quais são suas vantagens.
 
-That had me wondering: what the Elm version of the same app would look like? So I tried to build it! You can see the ending result [here](https://ellie-app.com/8Rn7dL9RKyWa1).
+Isso me fez pensar: como seria a versão Elm da mesma aplicação? Então eu tentei contruí-la! Você pode ver o resultado final [aqui](https://ellie-app.com/8Rn7dL9RKyWa1).
 
-Like in the original post, let's take a deeper look at what is going on here.
+Como no post original, vamos dar uma olhada mais profunda no que está acontecendo.
 
 # Getting started
 
@@ -38,9 +41,9 @@ import Task
 port sendQuery : String -> Cmd msg
 ```
 
-This is how most Elm applications (and files) start. You define the file's module name and explicitly declares what you want to expose and import from other modules. Elm has it's own package manager and when you create a new project, it will install a few basic packages to get you going. We also had to install some extra packages like `elm/json` and `elm/http`.
+É assim que a maioria das aplicações Elm (e arquivos) começam. Você define o nome do módulo do arquivo e explicitamente declara o que quer expor e importar de outros módulos. Elm tem seu próprio package manager e quando você cria um novo projeto, ele irá instalar alguns pacotes básicos. Nós tivemos que instalar alguns pacotes extras como `elm/json` e `elm/http`.
 
-One particular thing about our module is the fact that we start it by saying `port module`. In case you are not familiar with Elm, it is a purely functional language that can't have side effects. That means we can't, for instance, set things to `localStorage` from our Elm code. That is where ports come in, but we will talk about it later. At the end of this section, we declare a port named `sendQuery` that we will use later on.
+Uma coisa importante do nosso módulo é que ele começa com o texto `port module`. Caso você nunca tenha ouvido falar de Elm, ela é uma linguagem funcional totalmente pura que não pode ter efeitos colaterais. Isso significa que não podemos, por exemplo, definir coisas no nosso `localStorage` a partir do código Elm. É aí que ports entram, mas vamos falar mais sobre isso depois. No final desta seção declaramos um port chamado `sendQuery` que usaremos mais à frente.
 
 ```elm
 type alias Story =
@@ -74,20 +77,20 @@ type Msg
     | GotResults (Result Http.Error Stories)
 ```
 
-Here we have our types definitions. Elm is a strong and static typed language. That means we can create our types to help model the application. First, we have two alias types: `Story` and `Model`. An alias type just gives a nickname to some other typed structure. That way we can use the compiler to help us write the correct structure every time.
+Aqui temos as definições dos nossos tipos. Elm é uma linguagem forte e estaticamente tipada. Isso significa que podemos criar nossos próprios tipos para modelar nossa aplicação. Promeiro temos dois tipos alias: `Story` e `Model`. Um tipo alias é um tipo que dá um apelido a uma estrutura já conhecida. Desta forma podemos depender do compilador pra nos ajudar a escrever códigos corretos o tempo todo.
 
-Later we have some custom types: `Stories` and `Msg`. Those types will help us to keep a better understanding of our application's state and what we should do about it.
+Depois temos dois tipos customizados: `Stories` e `Msg`. Estes tipos irão nos ajudar entender melhor o estado da nossa aplicação e o que devemos fazer a seu respeito.
 
-# The TEA
+# A TEA
 
-The TEA (or The Elm Architecture) is a way to describe how most Elm applications work in terms of how the data flows through our code. It consists of a few basic concepts:
+A TEA (ou The Elm Architecture) é uma forma de descrever como a maioria das aplicações Elm funcionam e como os dados fluem através de nosso código. Ela consiste em alguns conceitos básicos:
 
-- We have one global state;
-- That state is rendered using some `view` function;
-- The `view` can send messages to some kind of `update` function (picture a button click or form submission);
-- Finally, the `update` mutates the state that is re-rendered by the `view`.
+- Temos um estado global;
+- Este estado é renderizado usando alguma função `view`;
+- A `view` pode enviar mensagens de algum tipo para a função `update` (imagine um clique de botão ou o envio de um formulário);
+- Por fim, o `update` muta o estado que então é renderizado novamente pela `view`.
 
-That is it! So let's build those functions:
+E é isso! Então vamos construir estas funções:
 
 ```elm
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -184,11 +187,11 @@ storyItem i =
         ]
 ```
 
-Here we have an `update` function that will receive our model and a message. Remember our types `Model` and `Msg`? We are going to use them here. We need to check which `Msg` we are getting and make the appropriate changes to the `Model`. And if you are paying attention you can see that we don't just return our `Model`, but a `Cmd msg` type (command). Remember when I said Elm can't have side effects? To solve that we have commands, which are a special type that we can handle to the Elm runtime to solve for us. It can be, for instance, an HTTP request like we are doing when `Msg` is `Search`. More on that later...
+Aqui temos uma função `update` que irá receber nosso model (estado) e mensagem. Lembra dos nossos tipos `Model` e `Msg`? Vamos usá-los aqui. Precisamos checar qual `Msg` estamos recebendo para realizar as mudanças apropriadas ao `Model`. E se você estiver prestando atenção vai ver que nós não retornamos apenas o `Model`, mas também um `Cmd msg` (comando). Lembra quando eu disse que Elm não tem efeitos colaterais? Pra resolver este problema temos comandos, que são um tipo especial que entregamos pro runtime do Elm resolver pra gente. Pode ser, por exemplo, uma requisição HTTP como a que estamos fazendo quando `Msg` é `Seach`. Mais sobre isso depois...
 
-After that, we have a few different functions that will return the type `Html`. That is different from returning actual HTML, but that is how we implement templates and components with Elm. Using plain functions! The Elm runtime will take care of things and render proper HTML from that.
+Depois disso, temos algumas funções especiais que irão retornar o tipo `Html`. Elas não retornam HTML em si, mas é assim que implementamos templates e componentes com Elm. Usando apenas funções! O runtime do Elm vai se encarregar de renderizar o HTML correto a partir delas.
 
-Now, let's wire it all together:
+Agora vamos juntar tudo:
 
 ```elm
 main : Program String Model Msg
@@ -205,11 +208,11 @@ main =
         }
 ```
 
-The `main` function is the entry point of our application. It is what the Elm runtime will look for and run once it kicks in. Here we are explicitly saying which functions our application will use for each stage of TEA. The `init` key is a function that should set up the initial model. Keys `view` and `update` are pretty self-explanatory by now. Finally, we have `subscriptions` that we won't use for this app but if you are interested, take a look at the [elm guide](https://guide.elm-lang.org/).
+A função `main` é o ponto de entrada da nossa aplicação. É a função que o runtime do Elm vai olhar assim que tudo for inicializado. Aqui estamos dizendo explicitamente quais funções nossa aplicação deve usar pra cada passo da TEA. a chave `init` é uma função que deve retornar nosso model (estado) inicial. As chaves `view` e `update` não precisam de maiores explicações. Por fim, temos a `subscriptions` que não vamos usar mas que se você estiver curioso pode dar uma olhada no [elm guide](https://guide.elm-lang.org/).
 
-# The missing stuff
+# O que ficou faltando
 
-Finally we have a few extra functions that will make our interaction with the application more dynamic:
+Por fim temos algumas funções extras que irão tornar a interação com nossa aplicação mais dinâmica:
 
 ```elm
 focusSearch : Cmd Msg
@@ -242,13 +245,13 @@ storyDecoder =
         (Decode.field "points" Decode.int)
 ```
 
-The function `focusSearch` is just a helper function that returns a command to inform the Elm runtime to focus on an element with a specific `id` and that is it. That one I straight copied from the Elm guide.
+A função `focusSearch` é apenas um helper que retorna um comando para informar o runtime do Elm para focar em um elemento com uma `id` específica e é isso. Eu copiei esta função inteira do elm guide.
 
-The real important function comes next: `request`. It receives a query string and creates a command that runs an HTTP request. This is where Elm shines for me. After making a request the runtime will send a new message for the application with some data. In our case we are telling the runtime to return the data with the `GotResults` message, expecting a JSON that can be successfully decoded with the `resultsDecoder` function. See, everything in Elm is typed and we can't just receive arbitrary data from the server. How would the compiler know which type of data are we dealing with? That is why we have to decode the JSON that we get, making it fit at a specific type. In our case, we need the JSON to return a valid `Stories` type.
+A função realmente importante vem em seguida: `request`. Ela recebe uma query string e cria um comando que irá rodar uma requisição HTTP. É aqui que Elm brilha pra mim. Após fazer a requisição o runtime irá mandar uma nova mensagem pra nossa aplicação com os dados usando a mensagem `GotResults`, esperando um JSON que possa ser decodificado com sucesso pela função `resultsDecoder`. Veja, tudo em Elm é tipado então não podemos simplesmente receber qualquer tipo de dado do servidor. Como o compilador saberia com quais tipos estamos lidando? É por isso que temos que decodificar o JSON que recebemos, fazendo-o encaixar em algum tipo específico. No nosso caso, precisamos que o nosso JSON retorne um tipo `Stories` válido.
 
-If you take a look at the way we handle the `GotResults` message on our `update` function, you will see that the returning data can either be `Ok ...` or an `Err ...`. An `Err` may occur if the HTTP request fails or if the JSON decoding fails.
+Se você der uma olhada na forma como lidamos com a mensagem `GotResults` na nossa função `update`, vai ver que o dado que temos de volta pode ser `Ok ...` ou `Err ...`. Um `Err` pode ocorrer se a requisição HTTP falhar ou se a decodificação falhar.
 
-# We still need JS after all...
+# Ainda precisamos de JS...
 
 ```html
 <html>
@@ -271,40 +274,40 @@ If you take a look at the way we handle the `GotResults` message on our `update`
 </html>
 ```
 
-The important bit about the HTML/JS part of our app is how we start it. On the `init` function call we can pass the value of the current data stored at the `localStorage` to our application. Take a look at the `init` function on the Elm side to see how we handle that.
+A parte importante do nosso HTML/JS é onde inicializamos a app. Na chamada à função `init` nós passamos o valor atualmente guardado no nosso `localStorage`. Dê uma olhada na função `init` do lado do Elm para ver como lidamos com isto.
 
-After that, we use the `sendQuery` port to save the search query every time a new search occurs. Take a look at the `Search` message handling we do on the `update` function to see the use to the `sendQuery` port we defined right at the beginning of our module.
+Depois, usamos o port `sendQuery` para salvar o termo de busca toda vez que uma nova busca ocorrer. Olhe em como lidamos com a mensagem `Search` na função `update` para ver o uso do port `sendQuery` que definimos no início de nosso módulo.
 
-# Takeaways
+# Aprendizados
 
-I have no real experience with React or Ember so this section won't be as well informed or in-depth as in the original article is. But let's take a look at how Elm solves some of our problems in a very efficient and easy way.
+Eu não tenho nenhuma experiência real com React ou Ember então esta seção não será tão bem elaborada ou profunda quanto no artigo original. Mas vamos dar uma olhada em como Elm resolve alguns dos nosso problemas de maneira simples e eficientes.
 
-## Custom types are a game-changer
+## Custom types são incríveis
 
-The React implementation on the `storiesReducer` function will do something like what our `update` function does. The real problem here is that it uses plain strings as keys for the possible actions it can execute. That is fine until you need more messages/actions.
+Na função `storiesReducer` da implementação em React temos algo parecido com o que a nossa função `update` faz. O problema é que ele usa strings puras como chaves para as possíveis ações a serem executadas. Isso é ok até você precisar de mais mensagens/ações.
 
-Because we are using an actual custom type as our message (we could be using strings but that wouldn't help), we need to handle every possible message that there is. If we need more messages we can just add them to our `Msg` type and the compiler will politely tell us about all the places where we need to handle that new message if we miss something.
+Pelo fato de estarmos usando um custom type como nossas mensagens (a gente poderia usar strings mas elas não seriam muito úteis), precisamos lidar com todas as possibilidades de mensagens que existem dentro deste tipo. Se precisarmos de mais mensagens, basta adicioná-las ao tipo `Msg` e o compilador vai educadamente nos avisar de todos os lugares onde precisamos lidar com esta nova mensagem se esquecermos de algo.
 
-## Custom types are a game-changer ²
+## Custom types são incríveis²
 
-Both on the React and Ember apps you will see that the "model" has a few flags like `isLoading` or `isError`. All that those flags are doing is informing the state of the stories we are trying to load. See how we always need to worry about resetting the values of those flags so we don't end up with a view that says that we have an error and we are loading at the same time. Nothing is preventing that from happening...
+Tanto na implementação React quanto Ember você vê que o "model" tem algumas flags como `isLoading` ou `isError`. Tudo o que essas flags fazem é informar o estado dos resultados que estamos tentando carregar. Veja como sempre é necessário resetar estes valores pra não acontecer de termos a informação de erro enquanto carregamos algo ao mesmo tempo. Nada impede isso de realmente acontecer...
 
-We can solve that by using a custom type that can represent the state of those stories only once at a time. It can't be `Loading` and `Error` at the same time, so we have certainty that our view will always render the right thing no matter what.
+Podemos resolver isto com custom types que representam um estado dos resultados por vez. Não é possível termos a situação `Loading` e `Error` ao mesmo tempo, assim temos certeza que nossa view sempre irá renderizar a coisa certa.
 
-## JSON decoding
+## Decodificação de JSON
 
-We have a bug in this app. See... A story title or author can be a `null` value coming back from the API call. If you open up the React or Ember apps and search for "elmish" for instance, you will get a few funny looking lines. That is because JavaScript won't stop you from accessing data that don't exist on a given object, rendering a pretty confusing and uninformative list of... things.
+A gente tem um bug nessa app. O título ou autor de uma história podem ter um valor `null` vindo da chamada da API. Se eu abrir as apps React ou Ember e procurar por algo como "elmish" por exemplo, você vai ver algumas linhas esquisitas. Isso acontece porque JavaScript não vai te impedir de acessar dados que não existem em um objeto, renderizando uma lista confusa e pouco informativa de... coisas.
 
-That can't happen with Elm. Besides the fact that we can use alias types to inform our compiler about the shape of some structures, when receiving data from the outside world it has to pass through a decoding process and that decoding can either work or fail: Elm will force us to handle both situations or it won't compile our program. Search for "elmish" on the Elm version of the app and you will see the message "Something went wrong ...". That is because our decoder only decodes strings for the `title` key, and if that key is `null` on the JSON side, it won't decode at all.
+Isso não pode acontecer com Elm. Além do fato de termos usados tipos alias para informar o compilador sobre a forma das nossas estruturas, quando recebemos dados do mundo exterior ele precisa passar por um processo de decodificação e este processo pode ser bem sucedido ou não: Elm nos força a lidar com ambas as situações ou nosso programa não compila. Procure por "elmish" na versão Elm e você verá a mensagem "Something went wrong..." (Algo de errado aconteceu...). Isto acontece porque nosso decoder só decodifica strings para a chave `title` e se temos um `null` do lado do JSON, ele não consegue decodificar.
 
-We could then update our decoder to handle those situations, maybe making the `title` key a `Maybe String`, and that would force us to handle the fact the `title` can either be `Just ...` something or `Nothing` in our `view` function. We could never reproduce those silly and confusing lines you get from using "plain" JavaScript.
+Nós poderíamos então atualizar nosso decodificador para lidar com estas situações, talvez fazendo o `title` ser um `Maybe String`, e isto nos forçaria a lidar com o fato de que `title` pode ser tanto `Just ...` quando `Nothing` em nossa função de `view`. Nunca seríamos capazes de reproduzir as linhas confusas e bobas que temos quando usamos "apenas" Javascript.
 
-## A simple take
+## Uma abordagem simples
 
-Hooks, components, tracked properties, actions, and so on... JS-land apps can have a lot of concepts that require time to learn and master. Elm, on the other hand, is pretty simple. Despite its somewhat cryptic syntax, if you never dealt with anything like it, Elm introduces very few concepts: everything is a function, and the way you make your application work is through the iteration of TEA, just like that.
+Hooks, components, tracked properties, actions, etc... Aplicações do mundo JS podem ter muitos conceitos que requerem tempo para aprender e dominar. Por outro lado, Elm é super simples. Apesar da sua sintaxe esquisita, se você nunca lidou com algo parecidoa antes, Elm introduz pouquíssimos conceitos: tudo é função, e a forma como a sua aplicação funciona é através de iterações da TEA, só isso.
 
 ---
 
-I fell like I'm having a very superficial take on top of such a well informed and well-written article like the one this is based on, but hopefully, I succeeded at showing how Elm would solve similar problems pointing at the exciting things it brings to the table.
+Eu sinto que estou sendo superficial em comparação ao artigo tão bem informado e bem escrito no qual este foi baseado, mas eu espero ter tido algum sucesso em mostrar como Elm solucionaria problemas similares apontando para as coisas animadoras que a linguagem traz à mesa.
 
-What am I missing from my list of takeaways? Is there any place where the React/Ember solutions are better? Please, let me know in the comments section. Cheers!
+O que eu estou esquecendo da minha lista de aprendizados? Existe algum lugar onde as soluções React/Ember sejam melhores? Por favor, mande seus comentários. Até breve!
