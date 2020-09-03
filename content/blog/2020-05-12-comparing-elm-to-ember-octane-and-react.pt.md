@@ -6,7 +6,7 @@ date = 2020-05-12
 tags = ["elm", "ember", "react", "funcional"]
 [extra]
 author = "Éber F. Dias"
-base_path = "@/blog/comparing-elm-to-ember-octane-and-react.md"
+base_path = "@/blog/2020-05-12-comparing-elm-to-ember-octane-and-react.md"
 +++
 Hoje me deparei com o artigo "[Comparing Ember Octane and React](https://www.pzuraq.com/comparing-ember-octane-and-react/)" no Hacker News.
 

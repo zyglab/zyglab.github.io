@@ -6,7 +6,7 @@ date = 2019-10-01
 tags = ["elixir", "php", "iniciantes", "funcional"]
 [extra]
 author = "Éber F. Dias"
-base_path = "@/blog/elixir-for-php-developers-programming-paradigm.md"
+base_path = "@/blog/2019-10-01-elixir-for-php-developers-programming-paradigm.md"
 +++
 Quando quero aprender algo novo tento achar algum material comparando o que quero aprender com algo que eu já conheça. Assim posso medir os pros e contras e decidir se devo investir meu tempo nisso.
 
