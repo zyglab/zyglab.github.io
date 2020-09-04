@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1 class="motto">{{ trans(key="motto", lang=lang) }}</h1>
+
+  <hr>
+
+  <p>{{ section.extra.eye | safe }}</p>
+
+  <hr>
+
+  <h2>{{ trans(key="latest_blog", lang=lang) }}</h2>
+
+  {% set blog = get_section(path=section.extra.blog_section) %}
+
+  <ul class="posts-list">
+    {% for post in blog.pages | slice(end=4) %}
+      <li>
+        <a href="{{ post.permalink }}">{{ post.title }}</a> -
+        {{ post.date | date(format=trans(key="date_format", lang=lang)) }}
+      </li>
+    {% endfor %}
+    <li><a href="{{ get_url(path="@/blog/_index.md", lang=lang) }}">{{ trans(key="more_posts", lang=lang) }}</a></li>
+  </ul>
+{% endblock content %}

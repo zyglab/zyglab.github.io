@@ -1,0 +1,63 @@
+# Reference: https://www.getzola.org/documentation/getting-started/configuration/
+base_url = "https://www.zyglab.dev"
+
+title = "Zyglab"
+
+description = "Zyglab - Technology, sufficiency, cooperation!"
+
+compile_sass = true
+
+highlight_code = true
+
+highlight_theme = "dracula"
+
+build_search_index = false
+
+generate_feed = true
+
+default_language = "en"
+
+languages = [
+  {code = "pt", feed = true}
+]
+
+taxonomies = [
+  {name = "tags", lang = "en"},
+  {name = "tags", lang = "pt"}
+]
+
+[translations]
+
+[translations.en]
+
+home_path = "/"
+built_with = "Built with"
+code_on = "Code on"
+follow_us = "Follow us on"
+support_us = "Support us on"
+motto = "Technology, sufficiency, cooperation."
+latest_blog = "Latest blog posts"
+more_posts = "More posts..."
+date_format = "%Y-%m-%d"
+read_other = "Read other posts"
+posted_on = "Posted on"
+other_lang = "pt"
+read_other_lang = "Leia em português"
+posts_for_tag = "Posts for tag"
+
+[translations.pt]
+
+home_path = "/pt"
+built_with = "Feito com"
+code_on = "Código no"
+follow_us = "Siga-nos no"
+support_us = "Colabore no"
+motto = "Tecnologia, suficiência, cooperação"
+latest_blog = "Últimas postagens no blog"
+more_posts = "Mais postagens..."
+date_format = "%d/%m/%Y"
+read_other = "Leia outras postagens"
+posted_on = "Postado em"
+other_lang = "en"
+read_other_lang = "Read in english"
+posts_for_tag = "Postagens para a tag"

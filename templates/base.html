@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="{{ lang }}">
+  <head>
+    <meta charset="utf-8">
+    <title>
+      {% if page.title is defined %}
+        {{ page.title }} - Zyglab
+      {% elif section.title is defined %}
+        {{ section.title }} - Zyglab
+      {% else %}
+        Zyglab
+      {% endif %}
+    </title>
+    {% if page.description is defined %}
+      <meta name="description" content="{{ page.description }}">
+    {% elif section.description is defined %}
+      <meta name="description" content="{{ section.description }}">
+    {% endif %}
+    <link rel="stylesheet" href="/main.css">
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="logo">
+        <a href="{{ trans(key="home_path", lang=lang) }}">
+          <img src="/imgs/logo.svg" alt="Zyglab">
+        </a>
+      </div>
+
+      {% block content %}{% endblock %}
+
+      <hr>
+
+      <footer class="footer">
+        {{ trans(key="built_with", lang=lang) }} <a href="http://getzola.org">Zola</a> |
+        {{ trans(key="code_on", lang=lang) }} <a href="http://github.com/zyglab">Github</a> |
+        {{ trans(key="follow_us", lang=lang) }} <a href="http://www.twitter.com/zyglab">Twitter</a> |
+        {{ trans(key="support_us", lang=lang) }} <a href="http://www.patreon.com/zyglab">Patreon</a> |
+        <a href="{{ get_url(path="@/_index.md", lang=trans(key="other_lang", lang=lang)) }}">{{ trans(key="read_other_lang", lang=lang) }}</a>
+      </footer>
+    </div>
+  </body>
+</html>
